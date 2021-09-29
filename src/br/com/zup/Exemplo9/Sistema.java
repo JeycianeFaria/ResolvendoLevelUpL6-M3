@@ -21,20 +21,31 @@ public class Sistema {
 
     // Método responsável por cadastrar moradores
     public static Morador cadastrarMoradores(){
-        String nome = capturarDados("Digite seu nome: ").nextLine();
-        String cpf = capturarDados("Digite seu cpf: ").nextLine();
-        String telefone = capturarDados("Digite o seu telefone: ").nextLine();
+        String nome = capturarDados("Digite o nome: ").nextLine();
+        String cpf = capturarDados("Digite o cpf: ").nextLine();
+        String telefone = capturarDados("Digite o  telefone: ").nextLine();
         double renda = capturarDados("Digite o salario: ").nextDouble();
 
         Morador morador = new Morador(nome, cpf, telefone, renda);
         return morador;
     }
 
+    //Método para adicionar varios Moradores
+    public static Imovel adicionarMoradores(Imovel imovel){
+        int qtdMoradores = capturarDados("Digite a quantidade de moradores: ").nextInt();
+        for (int i = 1; i <= qtdMoradores; i++) {
+            System.out.println("Cadastrar o " + i + "º morador");
+            Morador morador = cadastrarMoradores();
+            imovel.adicionarMorador(morador);
+        }
+        return imovel;
+    }
+
     // Método responsável por cadastrar funcionários
     public static Funcionario cadastrarFuncionario(){
-        String nome = capturarDados("Digite seu nome: ").nextLine();
-        String cpf = capturarDados("Digite seu cpf: ").nextLine();
-        String ctps = capturarDados("Digite sua carteira de trabalho: ").nextLine();
+        String nome = capturarDados("Digite o nome do Funcionário: ").nextLine();
+        String cpf = capturarDados("Digite o cpf do Funcionário: ").nextLine();
+        String ctps = capturarDados("Digite o número da carteira de trabalho do Funcionário: ").nextLine();
 
         Funcionario funcionario = new Funcionario(nome, cpf, ctps);
         return funcionario;
@@ -42,7 +53,7 @@ public class Sistema {
 
     // Método responsável por cadastrar imóvel
     public static Imovel cadastrarImovel(){
-        String endereco = capturarDados("Digite seu endereço: ").nextLine();
+        String endereco = capturarDados("Digite o endereço: ").nextLine();
         double valorAluguel = capturarDados("Digite o valor do aluguel: ").nextDouble();
 
         Imovel imovel = new Imovel(endereco, valorAluguel);
@@ -62,15 +73,10 @@ public class Sistema {
             switch (opcaoDoUsuario){
                 case 1:
                     Imovel imovel = cadastrarImovel();
+                    System.out.println("Por favor, cadastre o funcionário responsável: ");
                     Funcionario funcionario = cadastrarFuncionario();
                     imovel.setFuncionarioResponsavel(funcionario);
-
-                    int qtdMoradores = capturarDados("Digite a quantidade de moradores: ").nextInt();
-                    for (int i = 0; i < qtdMoradores; i++) {
-                        Morador morador = cadastrarMoradores();
-                        imovel.adicionarMorador(morador);
-                    }
-
+                    adicionarMoradores(imovel);
                     imobiliaria.adicionarImovel(imovel);
                     break;
                 case 2:

@@ -56,11 +56,12 @@ public class Imovel {
     @Override
     public String toString() {
         StringBuilder retorno = new StringBuilder();
-        retorno.append("\n Endereço: " +endereco);
-        retorno.append("\n Valor do Aluguel: R$" +valorDoAluguel);
-        retorno.append("\n Funcionário responsável: " +funcionarioResponsavel);
-        retorno.append("\n Quantidade de moradores: " +moradores.size());
-        retorno.append("\n Lista de moradores: " +moradores);
+        retorno.append("\n======Imóvel======");
+        retorno.append("\nEndereço: " +endereco);
+        retorno.append("\nValor do Aluguel: R$" +valorDoAluguel);
+        retorno.append("\nFuncionário responsável: " +funcionarioResponsavel.getNome());
+        retorno.append("\nQuantidade de moradores: " +moradores.size());
+        retorno.append("\nLista de moradores: " +moradores);
         return retorno.toString();
     }
 }
